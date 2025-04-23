@@ -10,14 +10,16 @@ pipeline {
             git url: 'https://github.com/vinod812/my-nginx.git', branch: 'main'
             }
         }
-        stage('Build') {
-            steps {
-                echo 'Running build automation'
-                bat 'gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
-            }
+     stage('Build') {
+        steps {
+            echo 'Running build automation'
+    
+            // For Windows, use `bat` instead of `sh`
+            bat 'gradlew.bat build --no-daemon'
+    
+            archiveArtifacts artifacts: 'dist/trainSchedule.zip'
         }
-  
+    }
 
     }
 }
