@@ -7,7 +7,6 @@ pipeline {
     stages {
         stage("Checkout from github repo"){
             steps{
-            # Replace with your github repo
             git url: 'https://github.com/vinod812/my-nginx.git'
             }
         }
