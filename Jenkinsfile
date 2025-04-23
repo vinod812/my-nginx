@@ -13,11 +13,8 @@ pipeline {
      stage('Build') {
         steps {
             echo 'Running build automation'
-    
-            // For Windows, use `bat` instead of `sh`
-            bat 'gradlew.bat build --no-daemon'
-    
-            archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+            bat 'gradle build --no-daemon'
+            archiveArtifacts artifacts: 'build/libs/*.jar'
         }
     }
 
