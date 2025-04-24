@@ -15,7 +15,7 @@ pipeline {
                 echo 'Running build automation'
                 // Use full path if gradle is not in PATH
                 bat 'D:\\tool\\gradle-8.13-all\\gradle-8.13\\bin\\gradle.bat build --no-daemon'
-                archiveArtifacts artifacts: 'build/libs/*.jar'
+                archiveArtifacts artifacts: 'app/build/libs/*.jar'
             }
         }
     }
