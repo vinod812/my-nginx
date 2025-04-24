@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 // Use full path if gradle is not in PATH
-                bat 'C:\\Gradle\\gradle-8.5\\bin\\gradle.bat build --no-daemon'
+                bat 'D:\\tool\\gradle-8.13-all\\gradle-8.13\\bin\\gradle.bat build --no-daemon'
                 archiveArtifacts artifacts: 'build/libs/*.jar'
             }
         }
