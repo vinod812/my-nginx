@@ -10,11 +10,7 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vinod812/my-nginx.git']])
             }
          }
-        stage("Checkout from GitHub Repo") {
-            steps {
-                git url: 'https://github.com/vinod812/my-nginx.git', branch: 'main'
-            }
-        }
+       
         stage('Build') {
             steps {
                 echo 'Running build automation'
