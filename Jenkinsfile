@@ -11,11 +11,19 @@ pipeline {
             }
          }
 
-    stage('Build Docker Image') {
+    /*stage('Build Docker Image') {
       steps {
         bat 'docker build -t my-app-image .'
       }
-    }
+    }*/
+
+      stage('Build Docker Image') {
+            steps {
+                script {
+                    app = docker.build(DOCKER_IMAGE_NAME)
+                }
+            }
+        }
         
     /*    stage('Build') {
             steps {
