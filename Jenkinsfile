@@ -5,6 +5,9 @@ pipeline {
         DOCKER_IMAGE_NAME = "vinod812/train-schedule"
     }
     stages {
+   steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vinod812/my-nginx.git']])
+            }
         stage("Checkout from GitHub Repo") {
             steps {
                 git url: 'https://github.com/vinod812/my-nginx.git', branch: 'main'
