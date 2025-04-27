@@ -1,23 +1,23 @@
 pipeline {
     agent any
-    // Replace with your Docker Hub image name
+
     environment {
         DOCKER_IMAGE_NAME = "vinod812/train-schedule"
     }
+
     stages {
-         stage("Checkout from GitHub Repo") {
-   steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vinod812/my-nginx.git']])
+        
+        stage("Checkout from GitHub Repo") {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/vinod812/my-nginx.git']]
+                ])
             }
-         }
+        }
 
-    /*stage('Build Docker Image') {
-      steps {
-        bat 'docker build -t my-app-image .'
-      }
-    }*/
-
-      stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
@@ -25,15 +25,9 @@ pipeline {
             }
         }
         
-    /*    stage('Build') {
-            steps {
-                echo 'Running build automation'
-                // Use full path if gradle is not in PATH
-                bat 'D:\\tool\\gradle-8.13-all\\gradle-8.13\\bin\\gradle.bat build --no-daemon'
-                archiveArtifacts artifacts: 'app/build/libs/*.jar'
-            }
-        }*/
+        /* If you had a Gradle build, it would go here. But you're using Docker, so no need for Gradle now */
     }
+
     post {
         success {
             echo 'Build completed successfully.'
